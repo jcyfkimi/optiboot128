@@ -126,7 +126,6 @@
 #else
 #  error AVR processor does not provide bootloader support!
 #endif
-#endif
 
 
 /* Check for SPM Enable bit. */

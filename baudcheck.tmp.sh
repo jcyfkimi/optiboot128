@@ -1,6 +1,5 @@
 # 1 "baudcheck.c"
-# 1 "C:\\Users\\ELKA\\Documents\\GitHub\\optiboot128//"
-# 1 "<built-in>"
+# 1 "/home/arif/builder/optiboot128//"
 # 1 "<command-line>"
 # 1 "baudcheck.c"
 # 24 "baudcheck.c"
