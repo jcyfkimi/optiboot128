@@ -9,7 +9,7 @@ Optiboot is an easy to install upgrade to the Arduino bootloader within Arduino 
   * Adaboot performance improvements. Optiboot runs your sketches sooner, with no watchdog issues.
   * Compatible with 168 and 328 Arduinos including Lilypad, Pro, Nano
   * Believed to work with ATmega1280 ("Mega"), ATmega644 ("Sanguino"), and ATmega1284 ("Mighty")
-  * Supports several additional AVR chips (ATmega88, ATmega16, ATmega32, ATmega128 fix)(https://github.com/Optiboot/optiboot/issues/146)
+  * Supports several additional AVR chips (ATmega88, ATmega16/32, ATmega64/128 fix)(https://github.com/Optiboot/optiboot/issues/146)
 
 Optiboot is now installed by default on the Arduino Uno. It can be installed on all older mega8, 168 or 328 based Arduinos.
 
@@ -17,7 +17,7 @@ Optiboot is now installed by default on the Arduino Uno. It can be installed on 
 More detailed documentation is being added (slowly) to the [repository wiki](https://github.com/Optiboot/optiboot/wiki).
 
 ## To install into the Arduino software ##
-  1. Download the latest using Git or the Zip download feature of GutHub.  If you download as a zip, also extract it.
+  1. Download the latest using Git or the Zip download feature of GitHub.  If you download as a zip, also extract it.
   1. You will need to be using a recent version of the [Arduino environment](http://arduino.cc), version 18 or later.
   1. Create a 'hardware' directory inside your sketches folder.
   1. Copy the optiboot directory into the hardware directory.
