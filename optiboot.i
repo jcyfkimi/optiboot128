@@ -133,11 +133,15 @@ typedef uint32_t uint_farptr_t;
 # 99 "/usr/lib/avr/include/avr/io.h" 3
 # 1 "/usr/lib/avr/include/avr/sfr_defs.h" 1 3
 # 100 "/usr/lib/avr/include/avr/io.h" 2 3
-# 200 "/usr/lib/avr/include/avr/io.h" 3
-# 1 "/usr/lib/avr/include/avr/iom64.h" 1 3
-# 1265 "/usr/lib/avr/include/avr/iom64.h" 3
+# 152 "/usr/lib/avr/include/avr/io.h" 3
+# 1 "/usr/lib/avr/include/avr/iom128.h" 1 3
+# 1243 "/usr/lib/avr/include/avr/iom128.h" 3
        
-# 1266 "/usr/lib/avr/include/avr/iom64.h" 3
+# 1244 "/usr/lib/avr/include/avr/iom128.h" 3
+
+       
+       
+       
 
        
        
@@ -173,7 +177,13 @@ typedef uint32_t uint_farptr_t;
        
        
        
-# 201 "/usr/lib/avr/include/avr/io.h" 2 3
+       
+       
+       
+       
+       
+       
+# 153 "/usr/lib/avr/include/avr/io.h" 2 3
 # 616 "/usr/lib/avr/include/avr/io.h" 3
 # 1 "/usr/lib/avr/include/avr/portpins.h" 1 3
 # 617 "/usr/lib/avr/include/avr/io.h" 2 3
@@ -272,82 +282,82 @@ typedef int ptrdiff_t;
 typedef int wchar_t;
 # 571 "/usr/lib/avr/include/avr/eeprom.h" 2 3
 # 657 "/usr/lib/avr/include/avr/eeprom.h" 3
-uint8_t __eerd_byte_m64 (const uint8_t *__p) __attribute__((__pure__));
+uint8_t __eerd_byte_m128 (const uint8_t *__p) __attribute__((__pure__));
 
 
 
 
-uint16_t __eerd_word_m64 (const uint16_t *__p) __attribute__((__pure__));
+uint16_t __eerd_word_m128 (const uint16_t *__p) __attribute__((__pure__));
 
 
 
 
-uint32_t __eerd_dword_m64 (const uint32_t *__p) __attribute__((__pure__));
+uint32_t __eerd_dword_m128 (const uint32_t *__p) __attribute__((__pure__));
 
 
 
 
-float __eerd_float_m64 (const float *__p) __attribute__((__pure__));
-
-
-
-
-
-void __eerd_block_m64 (void *__dst, const void *__src, size_t __n);
+float __eerd_float_m128 (const float *__p) __attribute__((__pure__));
 
 
 
 
 
-void __eewr_byte_m64 (uint8_t *__p, uint8_t __value);
-
-
-
-
-void __eewr_word_m64 (uint16_t *__p, uint16_t __value);
-
-
-
-
-void __eewr_dword_m64 (uint32_t *__p, uint32_t __value);
-
-
-
-
-void __eewr_float_m64 (float *__p, float __value);
+void __eerd_block_m128 (void *__dst, const void *__src, size_t __n);
 
 
 
 
 
-void __eewr_block_m64 (const void *__src, void *__dst, size_t __n);
+void __eewr_byte_m128 (uint8_t *__p, uint8_t __value);
+
+
+
+
+void __eewr_word_m128 (uint16_t *__p, uint16_t __value);
+
+
+
+
+void __eewr_dword_m128 (uint32_t *__p, uint32_t __value);
+
+
+
+
+void __eewr_float_m128 (float *__p, float __value);
 
 
 
 
 
-void __eeupd_byte_m64 (uint8_t *__p, uint8_t __value);
-
-
-
-
-void __eeupd_word_m64 (uint16_t *__p, uint16_t __value);
-
-
-
-
-void __eeupd_dword_m64 (uint32_t *__p, uint32_t __value);
-
-
-
-
-void __eeupd_float_m64 (float *__p, float __value);
+void __eewr_block_m128 (const void *__src, void *__dst, size_t __n);
 
 
 
 
 
-void __eeupd_block_m64 (const void *__src, void *__dst, size_t __n);
+void __eeupd_byte_m128 (uint8_t *__p, uint8_t __value);
+
+
+
+
+void __eeupd_word_m128 (uint16_t *__p, uint16_t __value);
+
+
+
+
+void __eeupd_dword_m128 (uint32_t *__p, uint32_t __value);
+
+
+
+
+void __eeupd_float_m128 (float *__p, float __value);
+
+
+
+
+
+void __eeupd_block_m128 (const void *__src, void *__dst, size_t __n);
 # 247 "optiboot.c" 2
 
 
@@ -477,7 +487,7 @@ int main(void) {
       newAddress = (newAddress & 0xff) | (getch() << 8);
 
 
-
+      (*(volatile uint8_t *)((0x3B) + 0x20)) = (newAddress & 0x8000) ? 1 : 0;
 
       newAddress += newAddress;
       address = newAddress;
@@ -528,7 +538,7 @@ int main(void) {
 
       verifySpace();
       putch(0x1E);
-      putch(0x96);
+      putch(0x97);
       putch(0x02);
     }
     else if (ch == 0x51) {
@@ -635,7 +645,7 @@ static inline void writebuffer(int8_t memtype, uint8_t *mybuff,
     case 'E':
 
         while(len--) {
-     __eewr_byte_m64((uint8_t *)(address++), *mybuff++);
+     __eewr_byte_m128((uint8_t *)(address++), *mybuff++);
         }
 # 875 "optiboot.c"
  break;
@@ -702,14 +712,17 @@ static inline void read_mem(uint8_t memtype, uint16_t address, pagelen_t length)
 
     case 'E':
  do {
-     putch(__eerd_byte_m64((uint8_t *)(address++)));
+     putch(__eerd_byte_m128((uint8_t *)(address++)));
  } while (--length);
  break;
 
     default:
  do {
-# 969 "optiboot.c"
-     __asm__ ("lpm %0,Z+\n" : "=r" (ch), "=z" (address): "1" (address));
+# 966 "optiboot.c"
+     __asm__ ("elpm %0,Z+\n" : "=r" (ch), "=z" (address): "1" (address));
+
+
+
 
      putch(ch);
  } while (--length);

@@ -289,7 +289,7 @@ atmega168_isp: isp
 atmega328: TARGET = atmega328
 atmega328: MCU_TARGET = atmega328p
 atmega328: CFLAGS += $(COMMON_OPTIONS)
-atmega328: AVR_FREQ ?= 16000000L
+atmega328: AVR_FREQ ?= 8000000L
 atmega328: LDSECTIONS  = -Wl,--section-start=.text=0x7e00 -Wl,--section-start=.version=0x7ffe
 atmega328: $(PROGRAM)_atmega328.hex
 atmega328: $(PROGRAM)_atmega328.lst
@@ -325,7 +325,7 @@ atmega128: $(PROGRAM)_atmega128.lst
 atmega64: MCU_TARGET = atmega64
 atmega64: CFLAGS += $(COMMON_OPTIONS) -DBIGBOOT $(UART_CMD)
 atmega64: AVR_FREQ ?= 16000000L
-atmega64: LDSECTIONS = -Wl,--section-start=.text=0xfc00 -Wl,--section-start=.version=0x1fffe
+atmega64: LDSECTIONS = -Wl,--section-start=.text=0xfc00 -Wl,--section-start=.version=0xfffe
 atmega64: $(PROGRAM)_atmega64.hex
 atmega64: $(PROGRAM)_atmega64.lst
 

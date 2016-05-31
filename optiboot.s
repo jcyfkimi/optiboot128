@@ -2,6 +2,7 @@
 __SP_H__ = 0x3e
 __SP_L__ = 0x3d
 __SREG__ = 0x3f
+__RAMPZ__ = 0x3b
 __tmp_reg__ = 0
 __zero_reg__ = 1
 	.stabs	"/home/arif/builder/optiboot128/",100,0,2,.Ltext0
@@ -534,34 +535,41 @@ main:
 	call getch
 	mov r5,__zero_reg__
 	or r5,r24
-	.stabn	68,0,561,.LM67-.LFBB7
+	.stabn	68,0,559,.LM67-.LFBB7
 .LM67:
+	mov r24,r5
+	rol r24
+	clr r24
+	rol r24
+	out __RAMPZ__,r24
+	.stabn	68,0,561,.LM68-.LFBB7
+.LM68:
 	lsl r4
 	rol r5
 	rjmp .L50
 .L29:
 .LBE36:
-	.stabn	68,0,565,.LM68-.LFBB7
-.LM68:
+	.stabn	68,0,565,.LM69-.LFBB7
+.LM69:
 	cpi r24,lo8(86)
 	brne .L30
-	.stabn	68,0,567,.LM69-.LFBB7
-.LM69:
+	.stabn	68,0,567,.LM70-.LFBB7
+.LM70:
 	ldi r24,lo8(4)
 	call getNch
-	.stabn	68,0,568,.LM70-.LFBB7
-.LM70:
+	.stabn	68,0,568,.LM71-.LFBB7
+.LM71:
 	ldi r24,0
 	rjmp .L63
 .L30:
-	.stabn	68,0,571,.LM71-.LFBB7
-.LM71:
+	.stabn	68,0,571,.LM72-.LFBB7
+.LM72:
 	cpi r24,lo8(100)
 	breq .+2
 	rjmp .L31
 .LBB37:
-	.stabn	68,0,577,.LM72-.LFBB7
-.LM72:
+	.stabn	68,0,577,.LM73-.LFBB7
+.LM73:
 	call getch
 	mov r16,r24
 	ldi r17,0
@@ -569,40 +577,40 @@ main:
 	clr r16
 	call getch
 	or r16,r24
-	.stabn	68,0,579,.LM73-.LFBB7
-.LM73:
+	.stabn	68,0,579,.LM74-.LFBB7
+.LM74:
 	call getch
 	mov r7,r24
-	.stabn	68,0,577,.LM74-.LFBB7
-.LM74:
-	movw r14,r16
-	.stabn	68,0,579,.LM75-.LFBB7
+	.stabn	68,0,577,.LM75-.LFBB7
 .LM75:
+	movw r14,r16
+	.stabn	68,0,579,.LM76-.LFBB7
+.LM76:
 	mov r8,__zero_reg__
 	clr r9
 	inc r9
 .L33:
-	.stabn	68,0,583,.LM76-.LFBB7
-.LM76:
+	.stabn	68,0,583,.LM77-.LFBB7
+.LM77:
 	call getch
 	movw r30,r8
 	st Z+,r24
 	movw r8,r30
-	.stabn	68,0,584,.LM77-.LFBB7
-.LM77:
+	.stabn	68,0,584,.LM78-.LFBB7
+.LM78:
 	ldi r31,1
 	sub r14,r31
 	sbc r15,__zero_reg__
 	cp r14,__zero_reg__
 	cpc r15,__zero_reg__
 	brne .L33
-	.stabn	68,0,587,.LM78-.LFBB7
-.LM78:
+	.stabn	68,0,587,.LM79-.LFBB7
+.LM79:
 	call verifySpace
 .LBB34:
 .LBB33:
-	.stabn	68,0,860,.LM79-.LFBB7
-.LM79:
+	.stabn	68,0,860,.LM80-.LFBB7
+.LM80:
 	ldi r24,lo8(69)
 	cpse r7,r24
 	rjmp .L61
@@ -613,27 +621,27 @@ main:
 	ldi r16,0
 	ldi r17,lo8(1)
 .L36:
-	.stabn	68,0,863,.LM80-.LFBB7
-.LM80:
+	.stabn	68,0,863,.LM81-.LFBB7
+.LM81:
 	cp r14,r8
 	cpc r15,r9
 	brne .+2
 	rjmp .L25
-	.stabn	68,0,864,.LM81-.LFBB7
-.LM81:
+	.stabn	68,0,864,.LM82-.LFBB7
+.LM82:
 	movw r30,r16
 	ld r22,Z+
 	movw r16,r30
 	movw r24,r14
-	call __eewr_byte_m64
+	call __eewr_byte_m128
 	ldi r31,-1
 	sub r14,r31
 	sbc r15,r31
 	rjmp .L36
 .L61:
 .LBB32:
-	.stabn	68,0,894,.LM82-.LFBB7
-.LM82:
+	.stabn	68,0,894,.LM83-.LFBB7
+.LM83:
 	movw r30,r4
 /* #APP */
  ;  894 "optiboot.c" 1
@@ -643,8 +651,8 @@ main:
  ;  0 "" 2
 /* #NOAPP */
 .L39:
-	.stabn	68,0,898,.LM83-.LFBB7
-.LM83:
+	.stabn	68,0,898,.LM84-.LFBB7
+.LM84:
 	lds r24,104
 	sbrc r24,0
 	rjmp .L39
@@ -654,8 +662,8 @@ main:
 	movw r30,r18
 	inc r31
 .LBB31:
-	.stabn	68,0,905,.LM84-.LFBB7
-.LM84:
+	.stabn	68,0,905,.LM85-.LFBB7
+.LM85:
 	ld r24,Z
 	movw r30,r18
 	add r30,r4
@@ -663,13 +671,13 @@ main:
 	movw r26,r18
 	subi r26,-1
 	sbci r27,-2
-	.stabn	68,0,906,.LM85-.LFBB7
-.LM85:
+	.stabn	68,0,906,.LM86-.LFBB7
+.LM86:
 	ld r20,X
 	ldi r25,0
 	or r25,r20
-	.stabn	68,0,908,.LM86-.LFBB7
-.LM86:
+	.stabn	68,0,908,.LM87-.LFBB7
+.LM87:
 /* #APP */
  ;  908 "optiboot.c" 1
 	movw  r0, r24
@@ -682,13 +690,13 @@ main:
 	subi r18,-2
 	sbci r19,-1
 .LBE31:
-	.stabn	68,0,913,.LM87-.LFBB7
-.LM87:
+	.stabn	68,0,913,.LM88-.LFBB7
+.LM88:
 	cp r16,r18
 	cpc r17,r19
 	brne .L41
-	.stabn	68,0,919,.LM88-.LFBB7
-.LM88:
+	.stabn	68,0,919,.LM89-.LFBB7
+.LM89:
 	movw r30,r4
 /* #APP */
  ;  919 "optiboot.c" 1
@@ -698,13 +706,13 @@ main:
  ;  0 "" 2
 /* #NOAPP */
 .L43:
-	.stabn	68,0,923,.LM89-.LFBB7
-.LM89:
+	.stabn	68,0,923,.LM90-.LFBB7
+.LM90:
 	lds r24,104
 	sbrc r24,0
 	rjmp .L43
-	.stabn	68,0,927,.LM90-.LFBB7
-.LM90:
+	.stabn	68,0,927,.LM91-.LFBB7
+.LM91:
 /* #APP */
  ;  927 "optiboot.c" 1
 	sts 104, r10
@@ -718,13 +726,13 @@ main:
 .LBE33:
 .LBE34:
 .LBE37:
-	.stabn	68,0,649,.LM91-.LFBB7
-.LM91:
+	.stabn	68,0,649,.LM92-.LFBB7
+.LM92:
 	cpi r24,lo8(116)
 	brne .L44
 .LBB38:
-	.stabn	68,0,651,.LM92-.LFBB7
-.LM92:
+	.stabn	68,0,651,.LM93-.LFBB7
+.LM93:
 	call getch
 	mov r16,r24
 	ldi r17,0
@@ -732,29 +740,29 @@ main:
 	clr r16
 	call getch
 	or r16,r24
-	.stabn	68,0,653,.LM93-.LFBB7
-.LM93:
-	call getch
-	.stabn	68,0,655,.LM94-.LFBB7
+	.stabn	68,0,653,.LM94-.LFBB7
 .LM94:
+	call getch
+	.stabn	68,0,655,.LM95-.LFBB7
+.LM95:
 	std Y+1,r24
 	call verifySpace
 .LBB39:
 .LBB40:
-	.stabn	68,0,941,.LM95-.LFBB7
-.LM95:
+	.stabn	68,0,941,.LM96-.LFBB7
+.LM96:
 	ldd r24,Y+1
 	movw r14,r4
 	cpi r24,lo8(69)
 	brne .L48
 .L47:
-	.stabn	68,0,946,.LM96-.LFBB7
-.LM96:
-	movw r24,r14
-	call __eerd_byte_m64
-	call putch
-	.stabn	68,0,947,.LM97-.LFBB7
+	.stabn	68,0,946,.LM97-.LFBB7
 .LM97:
+	movw r24,r14
+	call __eerd_byte_m128
+	call putch
+	.stabn	68,0,947,.LM98-.LFBB7
+.LM98:
 	subi r16,1
 	sbc r17,__zero_reg__
 	ldi r31,-1
@@ -765,19 +773,19 @@ main:
 	brne .L47
 	rjmp .L25
 .L48:
-	.stabn	68,0,971,.LM98-.LFBB7
-.LM98:
+	.stabn	68,0,971,.LM99-.LFBB7
+.LM99:
 	movw r30,r14
 /* #APP */
- ;  969 "optiboot.c" 1
-	lpm r24,Z+
+ ;  966 "optiboot.c" 1
+	elpm r24,Z+
 
  ;  0 "" 2
 /* #NOAPP */
 	movw r14,r30
 	call putch
-	.stabn	68,0,972,.LM99-.LFBB7
-.LM99:
+	.stabn	68,0,972,.LM100-.LFBB7
+.LM100:
 	subi r16,1
 	sbc r17,__zero_reg__
 	cp r16,__zero_reg__
@@ -788,46 +796,46 @@ main:
 .LBE40:
 .LBE39:
 .LBE38:
-	.stabn	68,0,661,.LM100-.LFBB7
-.LM100:
+	.stabn	68,0,661,.LM101-.LFBB7
+.LM101:
 	cpi r24,lo8(117)
 	brne .L49
-	.stabn	68,0,663,.LM101-.LFBB7
-.LM101:
-	call verifySpace
-	.stabn	68,0,664,.LM102-.LFBB7
+	.stabn	68,0,663,.LM102-.LFBB7
 .LM102:
+	call verifySpace
+	.stabn	68,0,664,.LM103-.LFBB7
+.LM103:
 	ldi r24,lo8(30)
 	call putch
-	.stabn	68,0,665,.LM103-.LFBB7
-.LM103:
-	ldi r24,lo8(-106)
+	.stabn	68,0,665,.LM104-.LFBB7
+.LM104:
+	ldi r24,lo8(-105)
 	call putch
 .L65:
-	.stabn	68,0,666,.LM104-.LFBB7
-.LM104:
+	.stabn	68,0,666,.LM105-.LFBB7
+.LM105:
 	ldi r24,lo8(2)
 	rjmp .L63
 .L49:
-	.stabn	68,0,668,.LM105-.LFBB7
-.LM105:
+	.stabn	68,0,668,.LM106-.LFBB7
+.LM106:
 	cpi r24,lo8(81)
 	brne .L50
-	.stabn	68,0,670,.LM106-.LFBB7
-.LM106:
+	.stabn	68,0,670,.LM107-.LFBB7
+.LM107:
 	ldi r24,lo8(8)
 	call watchdogConfig
 .L50:
-	.stabn	68,0,675,.LM107-.LFBB7
-.LM107:
+	.stabn	68,0,675,.LM108-.LFBB7
+.LM108:
 	call verifySpace
 .L25:
-	.stabn	68,0,677,.LM108-.LFBB7
-.LM108:
+	.stabn	68,0,677,.LM109-.LFBB7
+.LM109:
 	ldi r24,lo8(16)
 	call putch
-	.stabn	68,0,678,.LM109-.LFBB7
-.LM109:
+	.stabn	68,0,678,.LM110-.LFBB7
+.LM110:
 	rjmp .L51
 	.size	main, .-main
 	.stabs	"desttype:r(3,2)",64,0,573,7
@@ -836,6 +844,9 @@ main:
 	.stabs	"which:r(0,11)",64,0,526,24
 	.stabn	192,0,0,.LBB35-.LFBB7
 	.stabn	224,0,0,.LBE35-.LFBB7
+	.stabs	"newAddress:r(3,4)",64,0,554,4
+	.stabn	192,0,0,.LBB36-.LFBB7
+	.stabn	224,0,0,.LBE36-.LFBB7
 	.stabs	"desttype:r(3,2)",64,0,573,7
 	.stabn	192,0,0,.LBB37-.LFBB7
 	.stabn	224,0,0,.LBE37-.LFBB7
