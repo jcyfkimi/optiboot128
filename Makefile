@@ -317,7 +317,7 @@ atmega1280: $(PROGRAM)_atmega1280.lst
 #Atmega128
 atmega128: MCU_TARGET = atmega128
 atmega128: CFLAGS += $(COMMON_OPTIONS) -DBIGBOOT $(UART_CMD)
-atemga128: LIBS += -latmega128
+atmega128: LIBS += -latmega128	
 atmega128: AVR_FREQ ?= 16000000L
 atmega128: LDSECTIONS = -Wl,--section-start=.text=0x1fc00 -Wl,--section-start=.version=0x1fffe
 atmega128: $(PROGRAM)_atmega128.hex
@@ -511,13 +511,6 @@ atmega328_pro8_isp: LFUSE ?= FF
 atmega328_pro8_isp: EFUSE ?= 05
 atmega328_pro8_isp: isp
 
-#
-# Include additional platforms
-include Makefile.extras
-include Makefile.1284
-include Makefile.custom
-
-
 #---------------------------------------------------------------------------
 #
 # Generic build instructions
@@ -542,7 +535,7 @@ isp-stk500: $(PROGRAM)_$(TARGET).hex
 	$(SIZE) $@
 
 clean:
-	rm -rf *.o *.elf *.lst *.map *.sym *.lss *.eep *.srec *.bin *.hex *.tmp.sh
+	rm -rf *.o *.elf *.lst *.map *.sym *.lss *.eep *.srec *.bin *.hex *.tmp.sh *.i *.s
 
 %.lst: %.elf
 	$(OBJDUMP) -h -S $< > $@
